@@ -12,25 +12,27 @@ Basic usage:
 > main = specsToDir [spec] "my-elm-dir"
 -}
 module Servant.Elm
-       ( generateElmForAPI
-       , generateElmForAPIWith
-       , ElmOptions(..)
-       , UrlPrefix(..)
-       , defElmOptions
-       , defElmImports
+  ( generateElmForAPI
+  , generateElmForAPIWith
+  , ElmOptions(..)
+  , UrlPrefix(..)
+  , defElmOptions
+  , defElmImports
        -- * Convenience re-exports from the "Elm" module
-       , Spec(Spec)
-       , ElmType
-       , specsToDir
+    --    , Spec(Spec)
+    --    , ElmType
+    --    , specsToDir
        -- * Convenience re-exports from "Data.Proxy"
-       , Proxy(Proxy)
-       ) where
+  , Proxy(Proxy)
+  , IsElmDefinition
+  ) where
 
-import           Servant.Elm.Internal.Generate (ElmOptions (..), UrlPrefix (..),
-                                                defElmImports, defElmOptions,
-                                                generateElmForAPI,
-                                                generateElmForAPIWith)
+import Servant.Elm.Internal.Generate
+       (ElmOptions(..), UrlPrefix(..), defElmImports, defElmOptions,
+        generateElmForAPI, generateElmForAPIWith)
 
-import           Data.Proxy                    (Proxy (Proxy))
-import           Elm                           (ElmType, Spec (Spec),
-                                                specsToDir)
+import Data.Proxy (Proxy(Proxy))
+
+-- import           Elm                           (ElmType, Spec (Spec),
+--                                                 specsToDir)
+import Elm.TyRep (IsElmDefinition)
