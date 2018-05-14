@@ -1,0 +1,127 @@
+name: servant-elm
+version: 0.5.0.0
+version: 0.5.0.0
+synopsis: Automatically derive Elm functions to query servant webservices.
+description: Please see README.md
+homepage: http://github.com/mattjbray/servant-elm#readme
+license: BSD3
+license-file: LICENSE
+author: Matt Bray
+maintainer: mattjbray@gmail.com
+copyright: 2015-2016 Matt Bray
+category: Web
+build-type: Simple
+
+dependencies:
+  - aeson
+  - servant
+  - servant-server
+  - text
+
+library:
+  source-dirs: src
+  exposed-modules:
+    - Servant.Elm
+    - Servant.Elm.Internal.Foreign
+    - Servant.Elm.Internal.Generate
+    - Servant.Elm.Internal.Orphans
+  dependencies:
+    - base
+    - elm-export
+    - lens
+    - servant
+    - servant-foreign
+    - text
+    - wl-pprint-text
+
+executables:
+  books-example:
+    main: generate.hs
+    source-dirs: examples/books
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+      - elm-export
+      - servant
+      - servant-elm
+  e2e-tests-example:
+    main: generate.hs
+    source-dirs: examples/e2e-tests
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+      - elm-export
+      - servant
+      - servant-elm
+  giphy-example:
+    main: generate.hs
+    source-dirs: examples/giphy
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+      - elm-export
+      - servant
+      - servant-elm
+  readme-example:
+    main: generate.hs
+    source-dirs: examples/readme-example
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+      - elm-export
+      - servant
+      - servant-elm
+
+tests:
+  servant-elm-test:
+    main: GenerateSpec.hs
+    source-dirs: test
+    other-modules: Common
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wall
+    dependencies:
+      - Diff
+      - HUnit
+      - aeson
+      - base
+      - elm-export
+      - hspec
+      - servant
+      - servant-elm
+      - text
+  servant-elm-test-integration:
+    main: CompileSpec.hs
+    source-dirs: test
+    other-modules: Common
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+      - -Wall
+    dependencies:
+      - aeson
+      - base
+      - directory
+      - elm-export
+      - hspec
+      - interpolate
+      - mockery
+      - process
+      - servant
+      - servant-elm
+      - text
